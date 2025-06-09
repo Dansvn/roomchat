@@ -1,0 +1,377 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+  font-family: sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #111;
+  border-bottom: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  box-sizing: border-box;
+  z-index: 1000;
+  font-size: 14px;
+}
+
+#header h1 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 16px;
+  color: #fff;
+}
+
+#leave-link {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#leave-link:hover {
+  text-decoration: underline;
+}
+
+#chat {
+  flex: 1;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  padding: 10px 5px 80px 5px; 
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: calc(100vh - 120px);
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  margin: 4px 0;
+  word-break: break-word;
+}
+
+.mine {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.theirs {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.message-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+.mine .message-line {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.theirs .message-line {
+  flex-direction: row;
+  text-align: left;
+}
+
+.text {
+  flex-grow: 1;
+}
+
+.mine .message-line .time {
+  font-size: 0.65rem;
+  margin-right: 4px;
+  margin-left: 0;
+  order: 1;
+  color: #666;
+}
+
+.mine .message-line .text {
+  order: 2;
+}
+
+.theirs .message-line .time {
+  font-size: 0.65rem;
+  margin-left: 4px;
+  margin-right: 0;
+  order: 2;
+  color: #666;
+}
+
+.theirs .message-line .text {
+  order: 1;
+}
+
+.bubble {
+  background: #222;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.message.image-message .bubble {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  color: inherit;
+}
+
+.message.image-message .message-line {
+  display: block;
+  padding: 0;
+  margin-top: 4px;
+}
+
+.message.both {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.message.mine {
+  align-items: flex-end;
+}
+
+.message.theirs {
+  align-items: flex-start;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  font-size: 0.85em;
+  color: #666;
+}
+
+.header-info .time {
+  margin-right: 8px;
+  order: 0;
+}
+
+.header-info .username {
+  order: 1;
+}
+
+.chat-image {
+  max-width: 200px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 6px;
+  margin-left: 0;
+  background: transparent !important;
+}
+
+.message.both .text {
+  text-align: left !important;
+  align-self: flex-start !important;
+  font-size: 1em;
+  line-height: 1.3;
+  white-space: pre-wrap;
+}
+
+.message.image-message .username {
+  font-size: 10px;
+  color: #aaa;
+  margin-bottom: 2px;
+  text-align: left;
+}
+
+.message.image-message .time {
+  font-size: 10px;
+  color: #666;
+  margin-left: 0;
+  margin-bottom: 4px;
+  display: block;
+}
+
+#imagePreviewContainer {
+  background: transparent !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+#imagePreviewContainer > div {
+  position: relative;
+  display: inline-block;
+  background: transparent !important;
+}
+
+#imagePreview {
+  max-width: 200px;
+  border-radius: 8px;
+  display: block;
+  background: transparent !important;
+  margin-left: 0;
+}
+
+#cancelPreviewBtn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: transparent !important;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0;
+  user-select: none;
+  box-shadow: none !important;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+  transition: color 0.2s ease;
+}
+
+#cancelPreviewBtn:hover {
+  color: #ff5555;
+}
+
+.message.both .time {
+  font-size: 10px !important;
+}
+
+.message.mine.image-message .username,
+.message.mine.image-message .time {
+  text-align: right;
+}
+
+.message.mine.image-message {
+  align-self: flex-end;
+}
+
+.message.theirs.image-message {
+  align-self: flex-start;
+}
+
+.mine .username,
+.theirs .username {
+  font-size: 10px;
+  color: #aaa;
+  margin-bottom: 2px;
+}
+
+.mine .username {
+  text-align: right;
+}
+
+.theirs .username {
+  text-align: left;
+}
+
+#input-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #333;
+  background: #111;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 50px;
+  gap: 8px;
+  z-index: 999;
+}
+
+#text {
+  flex-grow: 1;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 12px 14px;
+  font-size: 14px;
+  background: transparent;
+  color: #fff;
+  height: 36px;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+#sendImageBtn,
+#sendTextBtn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #333;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+#sendImageBtn:hover,
+#sendTextBtn:hover {
+  background: #444;
+}
+
+input.error {
+  border: 2px solid #f44336;
+  outline: none;
+}
+
+#text:focus {
+  outline: none;
+}
+
+#sendTextBtn {
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.time {
+  font-size: 8px;
+  color: #666;
+  white-space: nowrap;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+@media (max-width: 600px) {
+  #chat {
+    padding-bottom: 120px;
+  }
+}
+

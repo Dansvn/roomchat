@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chatroom Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_login.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo" />
+    <form method="POST" autocomplete="off" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div id="errorText" class="error-text">
+        {% if form.name.errors %}
+          {{ form.name.errors[0] }}
+        {% endif %}
+      </div>
+
+      <input
+        type="text"
+        name="{{ form.name.name }}"
+        id="{{ form.name.id }}"
+        placeholder="Username"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="none"
+        spellcheck="false"
+        inputmode="text"
+        value="{{ form.name.data|default('') }}"
+        required
+      />
+
+      {{ form.room(
+          placeholder="Chatroom",
+          autocomplete="off",
+          autocorrect="off",
+          autocapitalize="none",
+          spellcheck="false",
+          inputmode="text",
+      ) }}
+
+      {{ form.submit() }}
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script_login.js') }}"></script>
+</body>
+</html>
+

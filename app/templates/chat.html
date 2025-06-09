@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chatroom: {{ room }}</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_chat.css') }}" />
+
+  <span id="myNameData" style="display:none;">{{ name|tojson }}</span>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+
+  <script src="{{ url_for('static', filename='js/script_chat.js') }}"></script>
+</head>
+<body>
+  <div id="header">
+    <h1>Chatroom - {{ room }}</h1>
+    <a href="#" onclick="leave_room()" id="leave-link">Leave room</a>
+  </div>
+
+  <div id="chat"></div>
+
+  <div id="imagePreviewContainer" style="display: none; margin-bottom: 8px;">
+    <div style="position: relative; display: inline-block;">
+      <img
+        id="imagePreview"
+        style="max-width: 200px; border-radius: 8px"
+        alt="Image preview"
+      />
+      <button
+        id="cancelPreviewBtn"
+        title="Cancel image preview"
+        aria-label="Cancel image preview"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+
+  <div id="input-wrapper">
+    <input
+      id="text"
+      name="dummy"
+      type="search"
+      placeholder="Message"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="none"
+      spellcheck="false"
+      inputmode="text"
+    />
+
+    <button id="sendImageBtn" type="button" title="Send image" aria-label="Send image">
+      <img src="{{ url_for('static', filename='img/camera.png') }}" alt="Send image" style="height: 20px; width: 20px;" />
+    </button>
+
+    <button id="sendTextBtn" title="Send message" aria-label="Send message">
+      <img src="{{ url_for('static', filename='img/send.png') }}" alt="Send message" style="height: 20px; width: 20px;" />
+    </button>
+
+    <input type="file" id="imageInput" accept="image/*" style="display:none" />
+  </div>
+</body>
+</html>
+
