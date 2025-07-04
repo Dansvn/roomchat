@@ -9,7 +9,11 @@ $(document).ready(function () {
     return;
   }
 
-  socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+const baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+socket = io(baseURL + "/chat", {
+  transports: ["websocket"]
+});
+
 
   window.addEventListener('beforeunload', function (e) {
     const texto = $('#text').val().trim();
@@ -183,4 +187,3 @@ function leave_room() {
     window.location.href = window.location.origin;
   });
 }
-
