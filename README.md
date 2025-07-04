@@ -31,7 +31,7 @@ Designed to be simple, fast, and with no data logging.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Dansvn/roomchat.git
+git clone https://github.com/Dansvn/roomchat
 cd roomchat
 ```
 
@@ -48,7 +48,7 @@ python3 main.py
 
 4. Open your browser and visit:
 ```bash
-http://localhost:5000
+http://localhost:8080
 ```
 
 
