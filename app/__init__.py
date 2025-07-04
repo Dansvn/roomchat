@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_socketio import SocketIO
 
-socketio = SocketIO()
+socketio = SocketIO(cors_allowed_origins="*") 
 
 sid_to_user = {}
 
@@ -16,4 +16,3 @@ def create_app(debug=False):
 
     socketio.init_app(app)
     return app
-
